@@ -17,8 +17,7 @@ and the following extra Libraries in order to run the app straight from the .py 
 
 ## INSTALATION
 
-No need, you can just run the app, although an sfx installer will be provided for windows machines
-where the app has been packaged as an executable
+No need, you can just run the app, although a windows Executable will be provided within a zip in ![releases](https://github.com/Nagarafas/Shotopoly-Player-Manager/releases/tag/Windows_executable)
 
 
 
