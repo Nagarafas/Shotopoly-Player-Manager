@@ -110,8 +110,9 @@ class Application(ctk.CTk):
         playerDicts = []
         for player in self.players:
             playerDicts.append({"number": player.number, "name": player.name, "shots": player.shots, "money": player.money})
-        jsonString = json.dumps(playerDicts)    
-        with open(f"{fileName}.json", "w") as fw:
+        jsonString = json.dumps(playerDicts)  
+          
+        with open(f"Saves/{fileName}.json", "w") as fw:
             fw.write(jsonString)
         
         self.saveName = fileName
@@ -137,7 +138,7 @@ class Application(ctk.CTk):
                 print("no players detected")
                 
                 
-            with open(f"{fileName}.json", "r") as fr:
+            with open(f"Saves/{fileName}.json", "r") as fr:
                 pDictsString = fr.read()
             playerDicts = json.loads(pDictsString)
             
