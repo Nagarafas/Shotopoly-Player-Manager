@@ -3,8 +3,8 @@ import playerManage
 import deletePlayerConfirmation
 
 class Player:
-    def __init__(self, window, name = "player", shots = 0, money = 1500):        
-        self.number = len(window.players)+1
+    def __init__(self, window, name = "player", shots = 0, money = 1500):
+        self.number = len(window.players)
         self.name = name
         self.shots = shots
         self.money = money
@@ -102,3 +102,34 @@ class Player:
         self.managePlayerButton.destroy()
         self.remPlayer.destroy()
         self.window.remPlayer(self.number, auto)
+    
+    def incrMoney(self, newMoney):
+        self.money += newMoney
+        
+    def decrMoney(self, newMoney):
+        self.money -= newMoney
+    
+    def getMoney(self):
+        return self.money
+        
+
+class Bank():
+    def __init__(self):
+        self.number = 0
+        self.money = 15140
+        self.name = "Bank"
+    
+    def updateLabels(self):
+        print("No Labels to update")
+
+    def __str__(self):
+        return f"- Name: {self.name}, Money: {self.money}"
+    
+    def incrMoney(self, newMoney):
+        self.money += newMoney
+        
+    def decrMoney(self, newMoney):
+        self.money -= newMoney
+    
+    def getMoney(self):
+        return self.money
