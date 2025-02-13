@@ -40,6 +40,10 @@ class SelectDialog(ctk.CTkToplevel):
         self.mainFrame.grid(row = 1, column = 0, columnspan = 20, rowspan= 20, pady = (5, 5), padx = (5, 5), sticky = "nsew") 
         
     def saveFileLookup(self):
+        try:
+            os.mkdir("Saves")
+        except:
+            print("-Saves directory already exists")
         workingDir=os.getcwd()
         if platform.system() == "Windows":
             savesFolder=f"{workingDir}\\Saves"
@@ -93,5 +97,5 @@ class SelectDialog(ctk.CTkToplevel):
         self.selectBox = ctk.CTkOptionMenu(master= self.mainFrame, values = self.savesList,  fg_color="#9F1133", font = (self.font, 20))
         self.selectBox.grid(row = 5, column = 5, columnspan = 10, pady = (0, 0), padx = (5, 5), sticky = "ew")
         
-        self.loadSaveButton = ctk.CTkButton(master= self.mainFrame, text = "Load", fg_color="#9F1133", font = (self.font, 20), command = self.loadSave)
+        self.loadSaveButton = ctk.CTkButton(master= self.mainFrame, text = "Load", fg_color="#339f11", hover_color="#227c11", font = (self.font, 20), command = self.loadSave)
         self.loadSaveButton.grid(row = 10, column = 5, columnspan = 10, pady = (0, 0), padx = (5, 5), sticky = "ew")
