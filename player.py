@@ -1,12 +1,15 @@
 import customtkinter as ctk
 import playerManage
 import deletePlayerConfirmation
+from playerTransactionWindow import ExchangeManager
+
 
 class Player:
-    def __init__(self, window, name = "player", shots = 0, money = 1500):
+    def __init__(self, window, name = "player", shots = 0, totalShots = 0, money = 1500):
         self.number = len(window.players)
         self.name = name
         self.shots = shots
+        self.totalShots = totalShots
         self.money = money
         
         self.font = window.font
@@ -15,7 +18,7 @@ class Player:
         
     def interface(self):
         self.namelbl = ctk.CTkLabel(master=self.window.mainFrame, text = f"{self.name}: ", font = (self.font, 18, "bold"))
-        self.shotslbl = ctk.CTkLabel(master=self.window.mainFrame, text = f"{self.shots}", font = (self.font, 18, "bold"))
+        self.shotslbl = ctk.CTkLabel(master=self.window.mainFrame, text = f"[{self.totalShots}] {self.shots}", font = (self.font, 18, "bold"))
         self.moneylbl = ctk.CTkLabel(master=self.window.mainFrame, text = f"{self.money}", font = (self.font, 18, "bold"))
         
         self.namelbl.grid(row = self.number, column = 0,  columnspan = 5, pady = 0, padx = (0, 5), sticky = "ew")
@@ -36,7 +39,7 @@ class Player:
         
     def updateLabels(self):
         self.namelbl.configure(text = f"{self.name}: ")
-        self.shotslbl.configure(text = f"{self.shots}")
+        self.shotslbl.configure(text = f"[{self.totalShots}] {self.shots}")
         self.moneylbl.configure(text = f"{self.money}")
         # print("-1-")
         self.window.after(1000, lambda : self.window.saveProgress(auto=True))
@@ -44,7 +47,8 @@ class Player:
     def addShot(self):
         if self.shots != 3:
             self.shots+=1
-            self.shotslbl.configure(text = f"{self.shots}")
+            self.totalShots+=1
+            self.shotslbl.configure(text = f"[{self.totalShots}] {self.shots}")
             # print("-2-")
             self.window.after(1000, lambda : self.window.saveProgress(auto=True))
         else:
@@ -53,7 +57,7 @@ class Player:
     def remShot(self):
         if (self.shots > 0 and self.shots < 3):
             self.shots-=1
-            self.shotslbl.configure(text = f"{self.shots}")
+            self.shotslbl.configure(text = f"[{self.totalShots}] {self.shots}")
             # print("-3-")
             self.window.after(1000, lambda : self.window.saveProgress(auto=True))
         else:
@@ -65,11 +69,19 @@ class Player:
 
     def resetShots(self):
         self.shots = 0
-        self.shotslbl.configure(text = f"{self.shots}")
+        
+        self.shotslbl.configure(text = f"[{self.totalShots}] {self.shots}")
         self.window.errorLbl.configure(text = "-Shot counter reset")
         # print("-4-")
         self.window.after(1000, lambda : self.window.saveProgress(auto=True))
+        self.passGoTransaction()
         
+        
+    def passGoTransaction(self):
+        self.window.players[0].decrMoney(200)
+        self.window.players[self.number].incrMoney(200)
+        self.updateLabels()
+        self.window.after(10000, lambda : self.window.saveProgress(auto=1))
     
     def __str__(self):
         self.updateRow()

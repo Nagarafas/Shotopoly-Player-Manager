@@ -3,7 +3,7 @@ import platform
 if platform.system() == "Windows": import Bitmap_Image_Create as windowImage
 else: import Image_Create as windowImage
 
-class ExhangeManager(ctk.CTkToplevel):
+class ExchangeManager(ctk.CTkToplevel):
     def __init__(self, window, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.window = window
@@ -12,10 +12,12 @@ class ExhangeManager(ctk.CTkToplevel):
         
         self.mainFrame = ctk.CTkFrame(self)
         self.players = self.window.players
+        
+    def drawWindow(self):
         self.gridInit()
         self.windowInit()
         self.main()
-        
+
     def gridInit(self):
         for i in range(self.gridSize):
             self.grid_rowconfigure(i, weight = 1)
@@ -61,7 +63,7 @@ class ExhangeManager(ctk.CTkToplevel):
                 self.statusLbl.configure(text = f"Successfully Tranfered €{funds}")
                 self.after(10000, lambda : self.window.saveProgress(auto=1))
         
-        self.updateMoneyLbl()
+        self.updateMoneyLbl()        
     
     def getFunds(self, isSender = True):
         for player in self.players:

@@ -84,7 +84,7 @@ class SelectDialog(ctk.CTkToplevel):
             playerDicts = json.loads(pDictsString)
             
             for pDat in playerDicts:
-                self.root.players.append(pl.Player(self.root, pDat["name"], pDat["shots"], pDat["money"]))
+                self.root.players.append(pl.Player(self.root, pDat["name"], pDat["shots"], pDat["totalShots"], pDat["money"]))
                 self.root.players[0].decrMoney(pDat["money"])
             
             self.root.addPlayerButton.grid(row = len(self.root.players))

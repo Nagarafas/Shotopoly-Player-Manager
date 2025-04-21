@@ -94,7 +94,7 @@ class Application(ctk.CTk):
         self.exchageButton.grid(row = len(self.players))
     
     def playerExchange(self):
-        playerTransactionWindow.ExhangeManager(self)
+        playerTransactionWindow.ExchangeManager(self).drawWindow()
      
     def updatePlayerNumber(self):
         for x, player in enumerate(self.players):
@@ -119,7 +119,7 @@ class Application(ctk.CTk):
         playerDicts = []
         for player in self.players:
             if not player == self.players[0]:
-                playerDicts.append({"number": player.number, "name": player.name, "shots": player.shots, "money": player.money})
+                playerDicts.append({"number": player.number, "name": player.name, "shots": player.shots, "totalShots": player.totalShots, "money": player.money})
         jsonString = json.dumps(playerDicts)  
           
         with open(f"Saves/{fileName}.json", "w") as fw:
