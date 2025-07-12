@@ -8,6 +8,13 @@ import json
 import saveSelectDialog
 from os import mkdir
 
+try:
+    import pyi_splash
+    pyi_splash.update_text('UI Loaded ...')
+    pyi_splash.close()
+except:
+    pass
+
 class Application(ctk.CTk):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
