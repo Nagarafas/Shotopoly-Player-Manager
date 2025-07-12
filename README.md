@@ -14,6 +14,7 @@ You'll need a python 3.1X.X instalation
 and the following extra Libraries in order to run the app straight from the .py file
 - Customtkinter
 - base64
+- pyi (optional for splash images)
 
 ## INSTALATION
 
