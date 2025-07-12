@@ -42,6 +42,8 @@ class Application(ctk.CTk):
         self.title("Shotopoly Player Manager")
         ctk.CTkFont(family='Roboto_Condensed', size=18)
         
+        self.protocol("WM_DELETE_WINDOW", self.destroy) #safely close the application on exit
+        
         windowImage.Apply(self)
         
         self.mainFrame.grid(row = 1, column = 0, columnspan = 21, rowspan= 19, pady = (5, 5), padx = (5, 5), sticky = "nsew")   
